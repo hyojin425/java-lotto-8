@@ -17,7 +17,7 @@ public class LottoResult {
         if (!isBonusNumberNotDuplicated(numbers, bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 로또 번호에 보너스 번호와 중복된 숫자가 있습니다.");
         }
-호
+
         if (!isBonusNumberValidNumberRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 로또 번호는 1~45 사이의 정수입니다.");
         }
