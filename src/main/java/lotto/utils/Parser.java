@@ -2,7 +2,9 @@ package lotto.utils;
 
 public class Parser {
 
-    public static int parsePurchaseAmountAsInt(String purchaseAmount) {
+    private static final String DELIMITER = ",";
+
+    public static int parseStringAsInt(String purchaseAmount) {
         return Integer.parseInt(purchaseAmount);
     }
 }
