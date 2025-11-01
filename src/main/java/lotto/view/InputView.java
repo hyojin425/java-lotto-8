@@ -24,4 +24,10 @@ public class InputView {
                 .map(number -> Parser.parseStringAsInt(number))
                 .collect(Collectors.toList());
     }
+
+    public int getBonusNumber() {
+        String bonusNumber = Console.readLine();
+        Validator.isDigit(bonusNumber);
+        return Parser.parseStringAsInt(bonusNumber);
+    }
 }
