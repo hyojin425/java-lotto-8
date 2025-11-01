@@ -16,11 +16,11 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
-        if (isNumberNotDuplicated(numbers)) {
+        if (!isNumberNotDuplicated(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
 
-        if (isValidNumberRange(numbers)) {
+        if (!isValidNumberRange(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 정수입니다.");
         }
     }
