@@ -25,11 +25,11 @@ public class Lotto {
         }
     }
 
-    public boolean isNumberNotDuplicated(List<Integer> numbers) {
+    private boolean isNumberNotDuplicated(List<Integer> numbers) {
         return Set.copyOf(numbers).size() == 6;
     }
 
-    public boolean isValidNumberRange(List<Integer> numbers) {
+    private boolean isValidNumberRange(List<Integer> numbers) {
         return numbers.stream().allMatch(number -> number >= 1 && number <= 45);
     }
 }
