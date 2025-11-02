@@ -26,7 +26,7 @@ public class DtoConverter {
 
     public static List<LottoRankDto> convertToLottoRankDto(Map<LottoRank, Long> rankCount) {
         return Arrays.stream(LottoRank.values())
-                .map(rank -> LottoRankDto.from(rank, rankCount.getOrDefault(rank, 0L).intValue()))
+                .map(rank -> LottoRankDto.of(rank, rankCount.getOrDefault(rank, 0L).intValue()))
                 .sorted(Comparator.comparingInt(LottoRankDto::matchCount))
                 .toList();
     }
