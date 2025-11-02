@@ -2,6 +2,9 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.validator.LottoValidator.isBonusNumberNotDuplicated;
+import static lotto.validator.LottoValidator.isBonusNumberValidNumberRange;
+
 public class LottoResult {
     private final Lotto winningLotto;
     private final Integer bonusNumber;
@@ -21,13 +24,5 @@ public class LottoResult {
         if (!isBonusNumberValidNumberRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 로또 번호는 1~45 사이의 정수입니다.");
         }
-    }
-
-    public boolean isBonusNumberNotDuplicated(List<Integer> numbers, Integer bonusNumber) {
-        return !numbers.contains(bonusNumber);
-    }
-
-    public boolean isBonusNumberValidNumberRange(Integer bonusNumber) {
-        return bonusNumber >= 1 && bonusNumber <= 45;
     }
 }

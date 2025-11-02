@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.validator.LottoValidator.isNumberNotDuplicated;
+import static lotto.validator.LottoValidator.isValidNumberRange;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -27,13 +30,5 @@ public class Lotto {
         if (!isValidNumberRange(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 정수입니다.");
         }
-    }
-
-    private boolean isNumberNotDuplicated(List<Integer> numbers) {
-        return Set.copyOf(numbers).size() == 6;
-    }
-
-    private boolean isValidNumberRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(number -> number >= 1 && number <= 45);
     }
 }
