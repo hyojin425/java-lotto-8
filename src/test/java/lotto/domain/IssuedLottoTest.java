@@ -35,4 +35,22 @@ class IssuedLottoTest {
         assertThat(rankCount.getOrDefault(LottoRank.FOURTH, 0L)).isEqualTo(0L);
         assertThat(rankCount.getOrDefault(LottoRank.FIFTH, 0L)).isEqualTo(1L);
     }
+
+    @DisplayName("로또 수익률을 계산한다.")
+    @Test
+    void 로또_수익률을_계산한다() {
+        // given
+        int totalPrize = 5000;
+        Lotto lotto1 = new Lotto(List.of(8, 21, 23, 41, 42, 43));
+        Lotto lotto2 = new Lotto(List.of(3, 5, 11, 16, 32, 38));
+        IssuedLotto issuedLotto = new IssuedLotto(List.of(lotto1, lotto2), 8);
+
+        // when
+        float rate = issuedLotto.calculateProfitRate(totalPrize);
+
+        // then
+        assertThat(rate)
+                .isGreaterThan(0)
+                .isEqualTo(62.5f);
+    }
 }
