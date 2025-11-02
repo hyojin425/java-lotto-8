@@ -11,8 +11,7 @@ public class InputView {
 
     public int getPurchaseAmount() {
         String purchaseAmountAsString = Console.readLine();
-        InputValidator.validateNotEmpty(purchaseAmountAsString, "구매 금액");
-        InputValidator.isDigit(purchaseAmountAsString);
+        InputValidator.isDigit(purchaseAmountAsString, "구매 금액");
         return Parser.parseStringAsInt(purchaseAmountAsString);
     }
 
@@ -28,8 +27,7 @@ public class InputView {
 
     public int getBonusNumber() {
         String bonusNumber = Console.readLine();
-        InputValidator.validateNotEmpty(bonusNumber, "보너스 번호");
-        InputValidator.isDigit(bonusNumber);
+        InputValidator.isDigit(bonusNumber, "보너스 번호");
         return Parser.parseStringAsInt(bonusNumber);
     }
 }

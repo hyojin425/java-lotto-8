@@ -10,7 +10,7 @@ class InputValidatorTest {
     @DisplayName("입력값이 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void 입력값이_숫자가_아닌_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> InputValidator.isDigit("hyojin"))
+        assertThatThrownBy(() -> InputValidator.isDigit("hyojin", "fieldName"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("숫자가 아닙니다.");
     }
@@ -23,7 +23,7 @@ class InputValidatorTest {
                 .hasMessageContaining("숫자와 쉼표");
     }
 
-    @DisplayName("입력 값이 null 이거나 비어있는 경우 예외가 발생한다.")
+    @DisplayName("값입력 값이 null 이거나 비어있는 경우 예외가 발생한다.")
     @Test
     void 입력_값이_null_이거나_비어있는_경우_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validateNotEmpty(" ", "테스트 값"))

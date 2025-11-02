@@ -7,8 +7,9 @@ public class InputValidator {
     private static final String IS_DIGIT_PATTERN = "^[0-9]+$";
     private static final String WINNING_LOTTO_PATTERN = "[\\d,]+";
 
-    public static void isDigit(String value) {
-        if (!value.matches(IS_DIGIT_PATTERN)) {
+    public static void isDigit(String input, String fieldName) {
+        validateNotEmpty(input, fieldName);
+        if (!input.matches(IS_DIGIT_PATTERN)) {
             throw new IllegalArgumentException(INVALID_NOT_DIGIT.getMessage());
         }
     }
