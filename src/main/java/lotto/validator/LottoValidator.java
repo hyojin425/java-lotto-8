@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.common.ExceptionMessage.*;
+import static lotto.common.LottoConstants.*;
 
 public class LottoValidator {
-
-    final static int NUMBER_SIZE = 6;
-    final static int LOTTO_NUMBER_MIN_VALUE = 1;
-    final static int LOTTO_NUMBER_MAX_VALUE = 45;
 
     public static void validateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
         validIsBonusNumberNotDuplicated(numbers, bonusNumber);
@@ -35,7 +32,7 @@ public class LottoValidator {
     }
 
     public static void validateIsNumberNotDuplicated(List<Integer> numbers) {
-        if (Set.copyOf(numbers).size() != NUMBER_SIZE) {
+        if (Set.copyOf(numbers).size() != NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }
@@ -47,7 +44,7 @@ public class LottoValidator {
     }
 
     public static void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_SIZE) {
+        if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }

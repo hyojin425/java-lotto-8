@@ -8,15 +8,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.common.LottoConstants.LOTTO_PRICE;
 import static lotto.validator.LottoServiceValidator.validatePurchaseAmount;
 
 
 public class LottoService {
-
-    private final static int LOTTO_PRICE = 1000;
-
-    public LottoService() {
-    }
 
     public List<LottoDto> buyLottos(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
