@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class DtoConverter {
 
     public static IssuedLottoDto convertToIssuedLottoDto(List<Lotto> lottos, int amount) {
-        return IssuedLottoDto.from(convertToLottoDto(lottos), amount);
+        return IssuedLottoDto.of(convertToLottoDto(lottos), amount);
     }
 
     public static List<LottoDto> convertToLottoDto(List<Lotto> lottos) {
