@@ -34,16 +34,16 @@ public class LottoService {
 
     public IssuedLottoDto buyLottos(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
-        int count = purchaseAmount / LOTTO_PRICE;
+        int amount = purchaseAmount / LOTTO_PRICE;
 
-        saveRandomLottos(count);
-        saveIssuedLotto(lottoRepository.findAll(), purchaseAmount);
+        saveRandomLottos(amount);
+        saveIssuedLotto(lottoRepository.findAll(), amount);
 
-        return convertToIssuedLottoDto(lottoRepository.findAll(), count);
+        return convertToIssuedLottoDto(lottoRepository.findAll(), amount);
     }
 
-    private void saveRandomLottos(int count) {
-        for (int i = 0; i < count; i++) {
+    private void saveRandomLottos(int amount) {
+        for (int i = 0; i < amount; i++) {
             lottoRepository.save(generateLotto());
         }
     }
@@ -52,8 +52,8 @@ public class LottoService {
         return new Lotto(RandomNumberGenerator.generateUniqueRandomNumber());
     }
 
-    private void saveIssuedLotto(List<Lotto> lottos, int purchasedAmount) {
-        issuedLottoRepository.save(new IssuedLotto(lottos, purchasedAmount));
+    private void saveIssuedLotto(List<Lotto> lottos, int amount) {
+        issuedLottoRepository.save(new IssuedLotto(lottos, amount));
     }
 
     private IssuedLottoDto convertToIssuedLottoDto(List<Lotto> lottos, int amount) {

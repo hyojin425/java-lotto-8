@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 public class IssuedLotto {
 
     private final List<Lotto> lottos;
-    private final int purchasedAmount;
+    private final int amount;
 
-    public IssuedLotto(List<Lotto> lottos, int purchasedAmount) {
+    public IssuedLotto(List<Lotto> lottos, int amount) {
         this.lottos = lottos;
-        this.purchasedAmount = purchasedAmount;
+        this.amount = amount;
     }
 
     public Map<LottoRank, Long> rankCount(LottoResult lottoResult) {
