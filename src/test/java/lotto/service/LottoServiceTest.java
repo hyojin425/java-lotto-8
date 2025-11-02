@@ -1,13 +1,14 @@
 package lotto.service;
 
+import lotto.domain.LottoRank;
 import lotto.dto.IssuedLottoDto;
-import lotto.dto.LottoDto;
 import lotto.repository.IssuedLottoRepository;
 import lotto.repository.LottoRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -42,5 +43,27 @@ class LottoServiceTest {
         assertThatThrownBy(() -> lottoService.buyLottos(invalidPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1000원 단위");
+    }
+
+    @DisplayName("로또 수익률을 계산한다.")
+    @Test
+    void 로또_수익률을_계산한다() {
+        // given
+        LottoRepository lottoRepository = new LottoRepository();
+        IssuedLottoRepository issuedLottoRepository = new IssuedLottoRepository();
+        LottoService lottoService = new LottoService(lottoRepository, issuedLottoRepository);
+
+        Map<LottoRank, Long> rankCount = new HashMap<>();
+        rankCount.put(LottoRank.FIFTH, 1L);
+
+        int amount = 8;
+
+        // when
+        double profitRate = lottoService.calculateProfitRate(rankCount, amount);
+
+        // then
+        assertThat(profitRate)
+                .isGreaterThan(0)
+                .isEqualTo(62.5);
     }
 }
