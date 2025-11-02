@@ -1,10 +1,9 @@
 package lotto.service;
 
+import lotto.dto.IssuedLottoDto;
 import lotto.dto.LottoDto;
-import lotto.dto.LottoResultDto;
+import lotto.repository.IssuedLottoRepository;
 import lotto.repository.LottoRepository;
-import lotto.validator.InputValidator;
-import lotto.validator.LottoServiceValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +18,15 @@ class LottoServiceTest {
     void 구입_금액에_해당하는_만큼_로또를_발행한다() {
         // given
         LottoRepository lottoRepository = new LottoRepository();
-        LottoService lottoService = new LottoService(lottoRepository);
+        IssuedLottoRepository issuedLottoRepository = new IssuedLottoRepository();
+        LottoService lottoService = new LottoService(lottoRepository, issuedLottoRepository);
         int purchaseAmount = 3000;
 
         // when
-        List<LottoDto> lottos = lottoService.buyLottos(3000);
+        IssuedLottoDto issuedLottoDto = lottoService.buyLottos(3000);
 
         // then
-        assertThat(lottos.size()).isEqualTo(purchaseAmount / 1000);
+        assertThat(issuedLottoDto.amount()).isEqualTo(purchaseAmount / 1000);
     }
 
     @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
@@ -34,7 +34,8 @@ class LottoServiceTest {
     void 구입_금액이_1000원_단위가_아니면_예외발생() {
         // given
         LottoRepository lottoRepository = new LottoRepository();
-        LottoService lottoService = new LottoService(lottoRepository);
+        IssuedLottoRepository issuedLottoRepository = new IssuedLottoRepository();
+        LottoService lottoService = new LottoService(lottoRepository, issuedLottoRepository);
         int invalidPurchaseAmount = 2500;
 
         // when & then
