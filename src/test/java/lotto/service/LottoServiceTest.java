@@ -71,7 +71,7 @@ class LottoServiceTest {
         issuedLottoRepository.save(issuedLotto);
 
         // when
-        LottoResultDto lottoResultDto = lottoService.calculateLottoResult(winningLotto,bonusNumber);
+        LottoResultDto lottoResultDto = lottoService.getLottoResult(winningLotto,bonusNumber);
 
         // then
         List<LottoRankDto> ranks = lottoResultDto.lottoRanks();
