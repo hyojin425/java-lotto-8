@@ -26,7 +26,8 @@ public class IssuedLotto {
     }
 
     public float calculateProfitRate(int totalPrize) {
-        float rate = (float) totalPrize / (amount * LOTTO_PRICE) * 100;
+        int purchaseAmount = amount * LOTTO_PRICE;
+        float rate = (float) totalPrize / purchaseAmount * 100;
         return Math.round(rate * 100) / 100.0f;
     }
 }
