@@ -14,7 +14,7 @@ class LottoResultTest {
     void 당첨_로또_번호에_보너스_번호와_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new LottoResult(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("중복된 숫자가 있습니다");
+                .hasMessageContaining("중복");
     }
 
     @DisplayName("보너스 번호가 1~45 사이의 정수가 아닌 숫자면 예외가 발생한다.")
