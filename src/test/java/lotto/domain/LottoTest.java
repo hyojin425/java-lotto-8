@@ -34,7 +34,7 @@ class LottoTest {
     void 로또_계산_테스트_5등() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoResult lottoResult = new LottoResult(List.of(1, 2, 3, 7, 8, 9), 10);
+        LottoResult lottoResult = new LottoResult(new Lotto(List.of(1, 2, 3, 7, 8, 9)), 10);
 
         // when
         LottoRank rank = lotto.calculateRank(lottoResult);
@@ -48,7 +48,7 @@ class LottoTest {
     void 로또_계산_테스트_4등() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoResult lottoResult = new LottoResult(List.of(1, 2, 3, 4, 8, 9), 10);
+        LottoResult lottoResult = new LottoResult(new Lotto(List.of(1, 2, 3, 4, 8, 9)), 10);
 
         // when
         LottoRank rank = lotto.calculateRank(lottoResult);
@@ -62,7 +62,7 @@ class LottoTest {
     void 로또_계산_테스트_3등() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoResult lottoResult = new LottoResult(List.of(1, 2, 3, 4, 5, 9), 10);
+        LottoResult lottoResult = new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 9)), 10);
 
         // when
         LottoRank rank = lotto.calculateRank(lottoResult);
@@ -76,7 +76,7 @@ class LottoTest {
     void 로또_계산_테스트_2등() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoResult lottoResult = new LottoResult(List.of(1, 2, 3, 4, 5, 9), 6);
+        LottoResult lottoResult = new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 9)), 6);
 
         // when
         LottoRank rank = lotto.calculateRank(lottoResult);
@@ -90,7 +90,7 @@ class LottoTest {
     void 로또_계산_테스트_1등() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoResult lottoResult = new LottoResult(List.of(1, 2, 3, 4, 5, 6), 7);
+        LottoResult lottoResult = new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
 
         // when
         LottoRank rank = lotto.calculateRank(lottoResult);

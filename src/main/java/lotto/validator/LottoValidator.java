@@ -10,13 +10,13 @@ import static lotto.common.LottoConstants.*;
 
 public class LottoValidator {
 
-    public static void validateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
-        validIsBonusNumberNotDuplicated(numbers, bonusNumber);
+    public static void validateBonusNumber(Lotto winningLotto, Integer bonusNumber) {
+        validIsBonusNumberNotDuplicated(winningLotto, bonusNumber);
         validIsBonusNumberValidNumberRange(bonusNumber);
     }
 
-    public static void validIsBonusNumberNotDuplicated(List<Integer> numbers, Integer bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
+    public static void validIsBonusNumberNotDuplicated(Lotto winningLotto, Integer bonusNumber) {
+        if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }

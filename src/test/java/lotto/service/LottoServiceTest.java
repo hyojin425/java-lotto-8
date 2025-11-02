@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.IssuedLotto;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.dto.IssuedLottoDto;
 import lotto.dto.LottoRankDto;
 import lotto.dto.LottoResultDto;
@@ -57,8 +58,8 @@ class LottoServiceTest {
     @Test
     void 등수의_개수와_수익률을_계산한다() {
         // given
-        List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
+        LottoResult lottoResult = new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 6)), bonusNumber);
         Lotto lotto1 = new Lotto(List.of(8, 21, 23, 41, 42, 43));
         Lotto lotto2 = new Lotto(List.of(3, 5, 11, 16, 32, 38));
         Lotto lotto3 = new Lotto(List.of(7, 11, 16, 35, 36, 44));
@@ -71,7 +72,7 @@ class LottoServiceTest {
         issuedLottoRepository.save(issuedLotto);
 
         // when
-        LottoResultDto lottoResultDto = lottoService.getLottoResult(winningLotto,bonusNumber);
+        LottoResultDto lottoResultDto = lottoService.getLottoResult(lottoResult);
 
         // then
         List<LottoRankDto> ranks = lottoResultDto.lottoRanks();
