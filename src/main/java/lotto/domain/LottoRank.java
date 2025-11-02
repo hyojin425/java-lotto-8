@@ -12,6 +12,18 @@ public enum LottoRank {
     private final boolean requiresBonus;
     private final int prize;
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isRequiresBonus() {
+        return requiresBonus;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
     LottoRank(int matchCount, boolean requiresBonus, int prize) {
         this.matchCount = matchCount;
         this.requiresBonus = requiresBonus;
