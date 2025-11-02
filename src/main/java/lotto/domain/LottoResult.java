@@ -14,4 +14,12 @@ public class LottoResult {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
+
+    public boolean isWinningNumber(int number) {
+        return winningLotto.contains(number);
+    }
+
+    public boolean isBonusNumberIn(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
+    }
 }

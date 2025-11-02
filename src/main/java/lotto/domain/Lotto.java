@@ -15,4 +15,16 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
+
+    public LottoRank calculateRank(LottoResult lottoResult) {
+        long matchCount = numbers.stream()
+                .filter(lottoResult::isWinningNumber)
+                .count();
+        boolean bonusMatch = lottoResult.isBonusNumberIn(numbers);
+        return LottoRank.valueOf((int) matchCount, bonusMatch);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }
