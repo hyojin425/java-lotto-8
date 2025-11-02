@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.domain.Lotto;
+
 import java.util.List;
 import java.util.Set;
 
@@ -26,13 +28,13 @@ public class LottoValidator {
     }
 
     public static void validateLotto(List<Integer> numbers) {
+        validateNumberSize(numbers);
         validateIsNumberNotDuplicated(numbers);
         validateNumberRange(numbers);
-        validateNumberSize(numbers);
     }
 
     public static void validateIsNumberNotDuplicated(List<Integer> numbers) {
-        if (Set.copyOf(numbers).size() != NUMBER_COUNT) {
+        if (Set.copyOf(numbers).size() < NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }
