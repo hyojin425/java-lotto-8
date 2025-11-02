@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.presentation.view;
 
 import lotto.dto.IssuedLottoDto;
 import lotto.dto.LottoDto;
