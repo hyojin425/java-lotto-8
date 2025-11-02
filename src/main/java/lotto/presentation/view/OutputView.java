@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println(issuedLottoDto.amount() + "개를 구매했습니다.");
 
         for (LottoDto lotto : issuedLottoDto.lottoDtos()) {
-            System.out.println(lotto);
+            System.out.println(lotto.numbers());
         }
     }
 
