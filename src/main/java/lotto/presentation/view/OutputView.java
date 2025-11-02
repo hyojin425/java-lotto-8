@@ -4,7 +4,10 @@ import lotto.dto.IssuedLottoDto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoRankDto;
 import lotto.dto.LottoResultDto;
+
 import java.text.NumberFormat;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 
 public class OutputView {
@@ -37,13 +40,21 @@ public class OutputView {
 
     public void printLottoResult(LottoResultDto lottoResultDto) {
         printLottoResultHeader();
-        lottoResultDto.lottoRanks().forEach(this::printLottoRankLine);
+        sortLottoRanks(lottoResultDto.lottoRanks())
+                .forEach(this::printLottoRankLine);
         printProfitRate(lottoResultDto.rate());
     }
 
     private void printLottoResultHeader() {
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
+
+    private List<LottoRankDto> sortLottoRanks(List<LottoRankDto> lottoRanks) {
+        return lottoRanks.stream()
+                .sorted(Comparator.comparingInt(LottoRankDto::matchCount)
+                        .thenComparing(LottoRankDto::bonusMatch))
+                .toList();
     }
 
     private void printLottoRankLine(LottoRankDto rank) {
