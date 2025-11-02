@@ -65,4 +65,12 @@ public class LottoService {
                 .map(LottoDto::from)
                 .collect(Collectors.toList());
     }
+
+    public float calculateProfitRate(Map<LottoRank, Long> rankCount, int amount) {
+        int totalPrize = rankCount.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue().intValue())
+                .sum();
+
+        return (float) totalPrize / (amount * LOTTO_PRICE) * 100;
+    }
 }
