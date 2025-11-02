@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static lotto.common.LottoConstants.LOTTO_PRICE;
+
 public class IssuedLotto {
 
     private final List<Lotto> lottos;
@@ -21,5 +23,10 @@ public class IssuedLotto {
                 .map(lotto -> lotto.calculateRank(lottoResult))
                 .filter(Objects::nonNull)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    public float calculateProfitRate(int totalPrize) {
+        float rate = (float) totalPrize / (amount * LOTTO_PRICE) * 100;
+        return Math.round(rate * 100) / 100.0f;
     }
 }
