@@ -10,8 +10,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-public class OutputView {
+import static lotto.common.MessageConstant.*;
 
+public class OutputView {
     private final NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
 
     public void printErrorMessage(String errorMessage) {
@@ -19,11 +20,11 @@ public class OutputView {
     }
 
     public void printPurchaseAmountInputGuide() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_PURCHASE_AMOUNT_GUIDE);
     }
 
     public void printIssuedLotto(IssuedLottoDto issuedLottoDto) {
-        System.out.println(issuedLottoDto.amount() + "개를 구매했습니다.");
+        System.out.printf((PURCHASED_LOTTO_COUNT_FORMAT) + "%n", issuedLottoDto.amount());
 
         for (LottoDto lotto : issuedLottoDto.lottoDtos()) {
             System.out.println(lotto.numbers());
@@ -31,11 +32,11 @@ public class OutputView {
     }
 
     public void printWinningLottoInputGuide() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNING_NUMBERS_GUIDE);
     }
 
     public void printBonusNumberInputGuide() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_GUIDE);
     }
 
     public void printLottoResult(LottoResultDto lottoResultDto) {
@@ -46,8 +47,8 @@ public class OutputView {
     }
 
     private void printLottoResultHeader() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(RESULT_HEADER);
+        System.out.println(RESULT_DIVIDER);
     }
 
     private List<LottoRankDto> sortLottoRanks(List<LottoRankDto> lottoRanks) {
@@ -60,15 +61,12 @@ public class OutputView {
     private void printLottoRankLine(LottoRankDto rank) {
         String bonusText = getBonusText(rank);
         String prizeFormatted = formatPrize(rank.prize());
-        System.out.println(rank.matchCount() + "개 일치" + bonusText + " ("
-                + prizeFormatted + "원) - " + rank.totalCount() + "개");
+        System.out.printf((MATCH_COUNT_FORMAT) + "%n",
+                rank.matchCount(), bonusText, prizeFormatted, rank.totalCount());
     }
 
     private String getBonusText(LottoRankDto rank) {
-        if (rank.bonusMatch()) {
-            return ", 보너스 볼 일치";
-        }
-        return "";
+        return rank.bonusMatch() ? BONUS_MATCH_TEXT : "";
     }
 
     private String formatPrize(int prize) {
@@ -76,6 +74,6 @@ public class OutputView {
     }
 
     private void printProfitRate(float rate) {
-        System.out.println("총 수익률은 " + rate + "%입니다.");
+        System.out.printf((PROFIT_RATE_FORMAT) + "%n", rate);
     }
 }
