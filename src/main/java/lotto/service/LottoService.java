@@ -37,7 +37,10 @@ public class LottoService {
         saveRandomLottos(amount);
         saveIssuedLotto(lottoRepository.findAll(), amount);
 
-        return convertToIssuedLottoDto(lottoRepository.findAll(), amount);
+        IssuedLotto issuedLotto = issuedLottoRepository.find()
+                .orElseThrow(() -> new IllegalStateException(ISSUED_LOTTO_NOT_FOUND.getMessage()));
+
+        return convertToIssuedLottoDto(issuedLotto);
     }
 
     private void saveRandomLottos(int amount) {
