@@ -20,7 +20,7 @@ public class LottoValidator {
     }
 
     public static void validIsBonusNumberValidNumberRange(Integer bonusNumber) {
-        if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
+        if (!(bonusNumber >= LOTTO_NUMBER_MIN_VALUE && bonusNumber <= LOTTO_NUMBER_MAX_VALUE)) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
