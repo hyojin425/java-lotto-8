@@ -76,7 +76,7 @@ public class LottoService {
         int totalPrize = getTotalPrize(rankCount);
         float rate = issuedLotto.calculateProfitRate(totalPrize);
 
-        return new LottoResultDto(convertToLottoRankDto(rankCount), rate);
+        return LottoResultDto.from(convertToLottoRankDto(rankCount), rate);
     }
 
     private int getTotalPrize(Map<LottoRank, Long> rankCount) {
