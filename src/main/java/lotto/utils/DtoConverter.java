@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.domain.IssuedLotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.dto.IssuedLottoDto;
@@ -14,8 +15,8 @@ import java.util.stream.Collectors;
 
 public class DtoConverter {
 
-    public static IssuedLottoDto convertToIssuedLottoDto(List<Lotto> lottos, int amount) {
-        return IssuedLottoDto.of(convertToLottoDto(lottos), amount);
+    public static IssuedLottoDto convertToIssuedLottoDto(IssuedLotto issuedLotto) {
+        return IssuedLottoDto.from(issuedLotto);
     }
 
     public static List<LottoDto> convertToLottoDto(List<Lotto> lottos) {

@@ -18,6 +18,14 @@ public class IssuedLotto {
         this.amount = amount;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
     public Map<LottoRank, Long> rankCount(LottoResult lottoResult) {
         return lottos.stream()
                 .map(lotto -> lotto.calculateRank(lottoResult))
