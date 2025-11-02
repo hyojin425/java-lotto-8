@@ -4,8 +4,12 @@ import lotto.dto.IssuedLottoDto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoRankDto;
 import lotto.dto.LottoResultDto;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class OutputView {
+
+    private final NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
 
     public void printPurchaseAmountInputGuide() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -28,14 +32,35 @@ public class OutputView {
     }
 
     public void printLottoResult(LottoResultDto lottoResultDto) {
+        printLottoResultHeader();
+        lottoResultDto.lottoRanks().forEach(this::printLottoRankLine);
+        printProfitRate(lottoResultDto.rate());
+    }
+
+    private void printLottoResultHeader() {
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
 
-        for (LottoRankDto lottoRankDto : lottoResultDto.lottoRanks()) {
-            System.out.println(
-                    lottoRankDto.matchCount() + "개 일치 (" + lottoRankDto.prize() + "원) - " + lottoRankDto.totalCount() + "개");
+    private void printLottoRankLine(LottoRankDto rank) {
+        String bonusText = getBonusText(rank);
+        String prizeFormatted = formatPrize(rank.prize());
+        System.out.println(rank.matchCount() + "개 일치" + bonusText + " ("
+                + prizeFormatted + "원) - " + rank.totalCount() + "개");
+    }
+
+    private String getBonusText(LottoRankDto rank) {
+        if (rank.bonusMatch()) {
+            return ", 보너스 볼 일치";
         }
+        return "";
+    }
 
-        System.out.println("총 수익률은 " + lottoResultDto.rate() + "%입니다.");
+    private String formatPrize(int prize) {
+        return numberFormat.format(prize);
+    }
+
+    private void printProfitRate(float rate) {
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }
