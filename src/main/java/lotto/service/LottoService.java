@@ -57,8 +57,15 @@ public class LottoService {
         issuedLottoRepository.save(new IssuedLotto(lottos, amount));
     }
 
-    public LottoResultDto getLottoResult(List<Integer> winningLotto, int bonusNumber) {
-        LottoResult lottoResult = new LottoResult(winningLotto, bonusNumber);
+    public Lotto createWinningLotto(List<Integer> winningLotto) {
+        return new Lotto(winningLotto);
+    }
+
+    public LottoResult createLottoResult(Lotto winningLotto, int bonusNumber) {
+        return new LottoResult(winningLotto, bonusNumber);
+    }
+
+    public LottoResultDto getLottoResult(LottoResult lottoResult) {
         IssuedLotto issuedLotto = issuedLottoRepository.find()
                 .orElseThrow(() -> new IllegalArgumentException(ISSUED_LOTTO_NOT_FOUND.getMessage()));
 
