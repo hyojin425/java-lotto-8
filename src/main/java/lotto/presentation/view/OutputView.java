@@ -11,6 +11,10 @@ public class OutputView {
 
     private final NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public void printPurchaseAmountInputGuide() {
         System.out.println("구입금액을 입력해 주세요.");
     }
