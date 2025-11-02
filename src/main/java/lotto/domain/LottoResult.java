@@ -15,11 +15,11 @@ public class LottoResult {
         this.bonusNumber = bonusNumber;
     }
 
-    public boolean isWinningNumber(int number) {
+    public boolean isContainNumber(int number) {
         return winningLotto.contains(number);
     }
 
-    public boolean isBonusNumberIn(List<Integer> numbers) {
+    public boolean hasBonusNumber(List<Integer> numbers) {
         return numbers.contains(bonusNumber);
     }
 }

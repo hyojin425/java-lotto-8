@@ -18,9 +18,9 @@ public class Lotto {
 
     public LottoRank calculateRank(LottoResult lottoResult) {
         long matchCount = numbers.stream()
-                .filter(lottoResult::isWinningNumber)
+                .filter(lottoResult::isContainNumber)
                 .count();
-        boolean bonusMatch = lottoResult.isBonusNumberIn(numbers);
+        boolean bonusMatch = lottoResult.hasBonusNumber(numbers);
         return LottoRank.valueOf((int) matchCount, bonusMatch);
     }
 
