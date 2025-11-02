@@ -10,6 +10,7 @@ public enum ExceptionMessage {
     INVALID_WINNING_LOTTO_FORMAT("숫자와 쉼표만 입력해야 합니다."),
     INPUT_EMPTY("비어있을 수 없습니다. 다시 입력해주세요"),
     INVALID_PURCHASE_AMOUNT("구입 금액은 " + LOTTO_PRICE +"원 단위여야 합니다."),
+    ISSUED_LOTTO_NOT_FOUND("발행된 로또가 존재하지 않습니다."),
     ;
 
     private final String message;
