@@ -1,15 +1,9 @@
-package lotto.utils;
+package lotto.validator;
 
-public class Validator {
+public class InputValidator {
 
     private static final String IS_DIGIT_PATTERN = "^[0-9]+$";
     private static final String WINNING_LOTTO_PATTERN = "[\\d,]+";
-
-    public static void validatePurchaseAmount(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
-        }
-    }
 
     public static void isDigit(String value) {
         if (!value.matches(IS_DIGIT_PATTERN)) {

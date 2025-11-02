@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.Parser;
-import lotto.utils.Validator;
+import lotto.validator.InputValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,14 +11,14 @@ public class InputView {
 
     public int getPurchaseAmount() {
         String purchaseAmountAsString = Console.readLine();
-        Validator.validateNotEmpty(purchaseAmountAsString, "구매 금액");
-        Validator.isDigit(purchaseAmountAsString);
+        InputValidator.validateNotEmpty(purchaseAmountAsString, "구매 금액");
+        InputValidator.isDigit(purchaseAmountAsString);
         return Parser.parseStringAsInt(purchaseAmountAsString);
     }
 
     public List<Integer> getWinningLotto() {
         String winningLotto = Console.readLine();
-        Validator.validateWinningLottoFormat(winningLotto);
+        InputValidator.validateWinningLottoFormat(winningLotto);
 
         List<String> winningLottoAsString =  Parser.parseWinningLotto(winningLotto);
         return winningLottoAsString.stream()
@@ -28,8 +28,8 @@ public class InputView {
 
     public int getBonusNumber() {
         String bonusNumber = Console.readLine();
-        Validator.validateNotEmpty(bonusNumber, "보너스 번호");
-        Validator.isDigit(bonusNumber);
+        InputValidator.validateNotEmpty(bonusNumber, "보너스 번호");
+        InputValidator.isDigit(bonusNumber);
         return Parser.parseStringAsInt(bonusNumber);
     }
 }

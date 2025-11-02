@@ -1,7 +1,8 @@
 package lotto.service;
 
 import lotto.dto.LottoDto;
-import lotto.utils.Validator;
+import lotto.validator.InputValidator;
+import lotto.validator.LottoServiceValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,7 @@ class LottoServiceTest {
     @Test
     void 구입_금액에_해당하는_만큼_로또를_발행한다() {
         // given
-        Validator validator = new Validator();
-        LottoService lottoService = new LottoService(validator);
+        LottoService lottoService = new LottoService();
         int purchaseAmount = 3000;
 
         // when
@@ -30,8 +30,7 @@ class LottoServiceTest {
     @Test
     void 구입_금액이_1000원_단위가_아니면_예외발생() {
         // given
-        Validator validator = new Validator();
-        LottoService lottoService = new LottoService(validator);
+        LottoService lottoService = new LottoService();
         int invalidPurchaseAmount = 2500;
 
         // when & then
