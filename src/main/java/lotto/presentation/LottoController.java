@@ -1,5 +1,7 @@
 package lotto.presentation;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.dto.IssuedLottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.presentation.view.InputView;
@@ -21,54 +23,56 @@ public class LottoController {
     }
 
     public void lottoStart() {
-        int purchaseAmount = getPurchaseAmount();
-        printIssuedLotto(purchaseAmount);
+        printIssuedLotto();
+        printLottoResult();
+    }
 
-        List<Integer> winningLotto = getWinningLotto();
-        int bonusNumber = getBonusNumber();
-        printLottoResult(winningLotto, bonusNumber);
+    private void printIssuedLotto() {
+        while (true) {
+            try {
+                int purchaseAmount = getPurchaseAmount();
+                IssuedLottoDto issuedLotto = lottoService.buyLottos(purchaseAmount);
+                outputView.printIssuedLotto(issuedLotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private int getPurchaseAmount() {
-        while (true) {
-            try {
-                outputView.printPurchaseAmountInputGuide();
-                return inputView.getPurchaseAmount();
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
+        outputView.printPurchaseAmountInputGuide();
+        return inputView.getPurchaseAmount();
     }
 
-    private void printIssuedLotto(int purchaseAmount) {
-        IssuedLottoDto issuedLotto = lottoService.buyLottos(purchaseAmount);
-        outputView.printIssuedLotto(issuedLotto);
+    private void printLottoResult() {
+        Lotto lotto = getWinningLotto();
+        LottoResult lottoResult = getLottoResult(lotto);
+        LottoResultDto lottoResultDto = lottoService.getLottoResult(lottoResult);
+        outputView.printLottoResult(lottoResultDto);
     }
 
-    private List<Integer> getWinningLotto() {
+    private Lotto getWinningLotto() {
         while (true) {
             try {
                 outputView.printWinningLottoInputGuide();
-                return inputView.getWinningLotto();
+                List<Integer> winningLotto = inputView.getWinningLotto();
+                return lottoService.createWinningLotto(winningLotto);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private int getBonusNumber() {
+    private LottoResult getLottoResult(Lotto lotto) {
         while (true) {
             try {
                 outputView.printBonusNumberInputGuide();
-                return inputView.getBonusNumber();
+                int bonusNumber = inputView.getBonusNumber();
+                return lottoService.createLottoResult(lotto, bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-    }
-
-    private void printLottoResult(List<Integer> winningLotto, int bonusNumber) {
-        LottoResultDto lottoResult = lottoService.getLottoResult(winningLotto, bonusNumber);
-        outputView.printLottoResult(lottoResult);
     }
 }
