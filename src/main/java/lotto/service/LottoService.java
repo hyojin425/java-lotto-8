@@ -22,8 +22,8 @@ import static lotto.validator.LottoServiceValidator.validatePurchaseAmount;
 
 public class LottoService {
 
-    final LottoRepository lottoRepository;
-    final IssuedLottoRepository issuedLottoRepository;
+    private final LottoRepository lottoRepository;
+    private final IssuedLottoRepository issuedLottoRepository;
 
     public LottoService(LottoRepository lottoRepository, IssuedLottoRepository issuedLottoRepository) {
         this.lottoRepository = lottoRepository;
